@@ -8,7 +8,7 @@ type Interrogate struct {
 }
 
 // Get captions from an image.
-func (a *api) Interrogate(params *Interrogate) (string, error) {
+func (a *AAPI) Interrogate(params *Interrogate) (string, error) {
 	payload, err := json.Marshal(params)
 	if err != nil {
 		return "", err

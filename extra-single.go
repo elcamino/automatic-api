@@ -94,7 +94,7 @@ func (p *ExtraSingleImage) correctParams() {
 	p.DoNotUpscalingCrop = !p.DoNotUpscalingCrop
 }
 
-func (a *api) ExtraSingleImage(params ExtraSingleImage) (*extraSingleImageRespond, error) {
+func (a *AAPI) ExtraSingleImage(params ExtraSingleImage) (*extraSingleImageRespond, error) {
 	params.correctParams()
 
 	payload, err := json.Marshal(params)

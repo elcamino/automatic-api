@@ -109,7 +109,7 @@ func (p *ExtraBatchImages) correctParams() {
 	p.DoNotUpscalingCrop = !p.DoNotUpscalingCrop
 }
 
-func (a *api) ExtraBatchImages(params *ExtraBatchImages) (*extraBatchImagesRespond, error) {
+func (a *AAPI) ExtraBatchImages(params *ExtraBatchImages) (*extraBatchImagesRespond, error) {
 	params.correctParams()
 
 	payload, err := json.Marshal(params)

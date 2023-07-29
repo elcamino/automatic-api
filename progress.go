@@ -27,7 +27,7 @@ type state struct {
 }
 
 // Get Generation Progress Info. Return Respond struct and Error object.
-func (a *api) Progress() (*progressRespond, error) {
+func (a *AAPI) Progress() (*progressRespond, error) {
 	resp, err := a.get(a.Config.Path.Progress)
 	if err != nil {
 		return &progressRespond{}, err

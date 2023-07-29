@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-type api struct {
+type AAPI struct {
 	Config Config
 
 	//  Auth contains username and password like this:
@@ -23,13 +23,13 @@ type api struct {
 
 var (
 	httpClient = &http.Client{}
-	API        = &api{
+	API        = &AAPI{
 		Config: setDefault(),
 	}
 )
 
-func New(newConfig ...Config) *api {
-	API = &api{
+func New(newConfig ...Config) *AAPI {
+	API = &AAPI{
 		Config: setDefault(newConfig...),
 	}
 	return API
@@ -41,7 +41,7 @@ func New(newConfig ...Config) *api {
 //	api.Password = password
 //
 // Either username or password should not be empty string
-func (a *api) SetAuth(username, password string) {
+func (a *AAPI) SetAuth(username, password string) {
 	a.Username = username
 	a.Password = password
 }
@@ -54,7 +54,7 @@ func BuildPrompt(args ...string) string {
 }
 
 // Send Get Request.
-func (a *api) get(path string) (body []byte, err error) {
+func (a *AAPI) get(path string) (body []byte, err error) {
 	req, err := http.NewRequest("GET", a.Config.BaseURL+path, nil)
 	if err != nil {
 		return nil, err
@@ -64,7 +64,7 @@ func (a *api) get(path string) (body []byte, err error) {
 }
 
 // Send Post Request.
-func (a *api) post(path string, data []byte) (body []byte, err error) {
+func (a *AAPI) post(path string, data []byte) (body []byte, err error) {
 	req, err := http.NewRequest("POST", a.Config.BaseURL+path, bytes.NewReader(data))
 	if err != nil {
 		return nil, err
@@ -76,7 +76,7 @@ func (a *api) post(path string, data []byte) (body []byte, err error) {
 }
 
 // Send Request.
-func (a *api) exec(req *http.Request) ([]byte, error) {
+func (a *AAPI) exec(req *http.Request) ([]byte, error) {
 	a.setAuth(req)
 
 	resp, err := httpClient.Do(req)
@@ -88,7 +88,7 @@ func (a *api) exec(req *http.Request) ([]byte, error) {
 }
 
 // Set HTTP Basic Auth.
-func (a *api) setAuth(req *http.Request) {
+func (a *AAPI) setAuth(req *http.Request) {
 	if a.Auth != "" {
 		credit := strings.Split(a.Auth, ", ")
 		req.SetBasicAuth(credit[0], credit[1])

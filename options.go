@@ -165,7 +165,7 @@ type Options struct {
 //
 //	NOTE: "NOT" included "extension options".
 //	SEE: OptionsWithExtensionOptions() for extension options
-func (a *api) Options() (result *Options, err error) {
+func (a *AAPI) Options() (result *Options, err error) {
 	resp, erro := a.get(a.Config.Path.Options)
 	if erro != nil {
 		err = erro
@@ -182,7 +182,7 @@ func (a *api) Options() (result *Options, err error) {
 // Get Options.
 //
 //	NOTE: Return as a map. SO you need to know the key(s) and value(s) type.
-func (a *api) OptionsWithExtensionOptions() (result map[string]any, err error) {
+func (a *AAPI) OptionsWithExtensionOptions() (result map[string]any, err error) {
 	resp, erro := a.get(a.Config.Path.Options)
 	if erro != nil {
 		err = erro
@@ -196,7 +196,7 @@ func (a *api) OptionsWithExtensionOptions() (result map[string]any, err error) {
 // Set original options.
 //
 //	SEE: SetOptionsWithExtensionOptions() for extension options settings.
-func (a *api) SetOptions(params *Options) error {
+func (a *AAPI) SetOptions(params *Options) error {
 	payload, err := json.Marshal(params)
 	if err != nil {
 		return err
@@ -210,7 +210,7 @@ func (a *api) SetOptions(params *Options) error {
 type Opt map[string]any
 
 // Receive api.Opt (map[string]any) as argument.
-func (a *api) SetOptionsWithExtensionOptions(params Opt) error {
+func (a *AAPI) SetOptionsWithExtensionOptions(params Opt) error {
 	payload, err := json.Marshal(params)
 	if err != nil {
 		return err

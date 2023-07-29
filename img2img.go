@@ -73,7 +73,7 @@ type Img2Img struct {
 	DecodeAfterResult bool `json:"-"`
 }
 
-func (i *Img2Img) processDefault(a *api) {
+func (i *Img2Img) processDefault(a *AAPI) {
 	if a.Config.Default == nil {
 		return
 	}
@@ -107,7 +107,7 @@ func (i *Img2Img) processDefault(a *api) {
 	i.DoNotSendImages = !i.DoNotSendImages
 }
 
-func (a *api) Image2Image(i *Img2Img) (*img2imgRespond, error) {
+func (a *AAPI) Image2Image(i *Img2Img) (*img2imgRespond, error) {
 	i.processDefault(a)
 
 	payload, err := json.Marshal(i)

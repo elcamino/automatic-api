@@ -13,7 +13,7 @@ type stableDiffusionModels struct {
 }
 
 // Get available Stable Diffusion Models
-func (a *api) SDModels() (result []*stableDiffusionModels, err error) {
+func (a *AAPI) SDModels() (result []*stableDiffusionModels, err error) {
 	resp, erro := a.get(a.Config.Path.SDModels)
 	if erro != nil {
 		err = erro
