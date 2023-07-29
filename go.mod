@@ -1,4 +1,4 @@
-module github.com/Meonako/webui-api
+module github.com/elcamino/automatic-api
 
 go 1.19
 
